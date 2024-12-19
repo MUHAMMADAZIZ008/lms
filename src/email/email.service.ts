@@ -6,13 +6,16 @@ export class EmailService {
   private readonly logger = new Logger(EmailService.name);
   constructor(private readonly emailService: MailerService) {}
 
-  async sendActivedOtp(to: string, subject: string, text: string) {
+  async sendActivedOtp(to: string, subject: string, text: string, id: number) {
     try {
       await this.emailService.sendMail({
         to,
         subject,
         html: `
-            <h1>This your otp: ${text}</h1>
+            <h1>
+              This is your otp: ${text}
+              Your id: ${id}
+            </h1>
         `,
       });
     } catch (error) {

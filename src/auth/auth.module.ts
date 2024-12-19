@@ -4,10 +4,12 @@ import { AuthController } from './auth.controller';
 import { UserModule } from 'src/user/user.module';
 import { HashPassword } from 'src/utils/hashing';
 import { JwtModule } from '@nestjs/jwt';
+import { EmailModule } from 'src/email/email.module';
+import { otpProviders } from 'src/otp/otp.provider';
 
 @Module({
-  imports: [JwtModule.register({}), UserModule],
+  imports: [EmailModule, JwtModule.register({}), UserModule],
   controllers: [AuthController],
-  providers: [HashPassword, AuthService],
+  providers: [...otpProviders, HashPassword, AuthService],
 })
 export class AuthModule {}
