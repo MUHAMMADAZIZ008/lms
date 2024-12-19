@@ -1,15 +1,21 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { User } from '../entities/user.entity';
 import { UpdateUserDto } from '../dto/update-user.dto';
+import { HashPassword } from 'src/utils/hashing';
 
 @Injectable()
 export class UserRepository {
   constructor(
+    private readonly hashPassword: HashPassword,
     @Inject('USER_REPOSITORY')
     private userModel: typeof User,
   ) {}
 
   async create(createUserDto) {
+    const hashPassword = await this.hashPassword.createHashPassword(
+      createUserDto.password,
+    );
+    createUserDto.password = hashPassword;
     return this.userModel.create(createUserDto);
   }
 
@@ -34,6 +40,11 @@ export class UserRepository {
       where: {
         id,
       },
+    });
+  }
+  async userLogin(loginUser: UpdateUserDto) {
+    return await this.userModel.findOne({
+      where: { username: loginUser.username },
     });
   }
 }

@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
-import { userProviders } from './ user.providers';
+import { userProviders } from './user.providers';
 import { MulterModule } from '@nestjs/platform-express';
 import { UserRepository } from './repositories/user.repository';
+import { HashPassword } from 'src/utils/hashing';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { UserRepository } from './repositories/user.repository';
     }),
   ],
   controllers: [UserController],
-  providers: [UserService, ...userProviders, UserRepository],
+  providers: [HashPassword, UserService, ...userProviders, UserRepository],
   exports: [UserRepository],
 })
 export class UserModule {}
