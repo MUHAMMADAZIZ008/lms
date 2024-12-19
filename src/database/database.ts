@@ -1,5 +1,8 @@
 import { Sequelize } from 'sequelize-typescript';
 import { User } from '../user/entities/user.entity';
+import { Category } from 'src/category/entities/category.entity';
+import { Course } from 'src/course/entities/course.entity';
+import { Group } from 'src/group/entities/group.entity';
 
 export const databaseProviders = [
   {
@@ -9,11 +12,11 @@ export const databaseProviders = [
         dialect: 'postgres',
         host: 'localhost',
         port: 5432,
-        username: 'postgres', //sizning username
-        password: 'postgres', // sizning passwortiz
-        database: 'postgres', //sizning database
+        username: 'postgres',
+        password: 'saman77071!', 
+        database: 'lms', 
       });
-      sequelize.addModels([User]);
+      sequelize.addModels([User, Category, Course , Group]);
       await sequelize.sync({
         force: true,
       });

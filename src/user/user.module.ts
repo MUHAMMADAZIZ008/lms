@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
-import { userProviders } from './ user.providers';
+import { userProviders } from './user.providers';
 import { MulterModule } from '@nestjs/platform-express';
 import { UserRepository } from './repositories/user.repository';
 
