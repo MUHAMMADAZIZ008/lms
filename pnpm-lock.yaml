@@ -56,6 +56,9 @@ importers:
       mongoose:
         specifier: ^8.8.4
         version: 8.8.4
+      nodemailer:
+        specifier: ^6.9.16
+        version: 6.9.16
       pg:
         specifier: ^8.13.1
         version: 8.13.1
