@@ -1,15 +1,8 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignUpAuthDto } from './dto/signup-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { OtpDto } from 'src/otp/otp.dto';
+import { Itoken } from 'src/common/token.interface';
 
 @Controller('auth')
 export class AuthController {
@@ -24,24 +17,12 @@ export class AuthController {
   login(@Body() createAuthDto: SignUpAuthDto) {
     return this.authService.login(createAuthDto);
   }
-
-  @Get()
-  findAll() {
-    return this.authService.findAll();
+  @Post('active/otp')
+  actioveOtp(@Body() otp: OtpDto) {
+    return this.authService.avtiveOtp(otp);
   }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.authService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAuthDto: UpdateAuthDto) {
-    return this.authService.update(+id, updateAuthDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.authService.remove(+id);
+  @Post('refresh/token')
+  refreshToken(@Body() token: Itoken) {
+    return this.authService.refreshToken(token);
   }
 }

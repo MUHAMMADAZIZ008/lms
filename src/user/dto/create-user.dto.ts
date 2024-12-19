@@ -7,6 +7,7 @@ import {
   Max,
   Min,
 } from 'class-validator';
+// import { IsEmail } from 'sequelize-typescript';
 import { Roles } from 'src/common/enums/role';
 import { UserStatus } from 'src/common/enums/user.status';
 
@@ -28,6 +29,13 @@ export class CreateUserDto {
   @Min(3)
   @Max(50)
   username: string;
+
+  @ApiProperty({
+    type: String,
+    description: 'User email',
+  })
+  @IsString()
+  email: string;
 
   @ApiProperty({
     type: String,
