@@ -20,7 +20,7 @@ export const databaseProviders = [
         password: configService.get<string>('PG_PASSWORD'),
         database: configService.get<string>('PG_DATABASE'),
       });
-      sequelize.addModels([User, Otp,Category, Course, Group]);
+      sequelize.addModels([User, Otp, Category, Course, Group]);
       await sequelize.sync({
         force: false,
       });

@@ -6,4 +6,7 @@ export class OtpDto {
 
   @IsNumber()
   user_id: number;
+
+  @IsString()
+  type: string;
 }
