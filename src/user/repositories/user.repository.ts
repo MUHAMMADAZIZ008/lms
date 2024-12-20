@@ -28,6 +28,12 @@ export class UserRepository {
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
+    if (updateUserDto.password) {
+      const hashPassword = await this.hashPassword.createHashPassword(
+        updateUserDto.password,
+      );
+      updateUserDto.password = hashPassword;
+    }
     return this.userModel.update(updateUserDto, {
       where: {
         id,
@@ -45,6 +51,12 @@ export class UserRepository {
   async userLogin(loginUser: UpdateUserDto) {
     return await this.userModel.findOne({
       where: { username: loginUser.username },
+    });
+  }
+
+  async getEmail(email: string) {
+    return this.userModel.findOne({
+      where: { email },
     });
   }
 }

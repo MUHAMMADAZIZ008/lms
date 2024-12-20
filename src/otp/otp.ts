@@ -6,6 +6,7 @@ import {
   ForeignKey,
   BelongsTo,
 } from 'sequelize-typescript';
+import { otpType } from 'src/common/enums/otp.enum';
 import { User } from 'src/user/entities/user.entity';
 
 @Table({ tableName: 'otp' })
@@ -32,6 +33,10 @@ export class Otp extends Model {
   @Column
   otp_code: string;
 
+  @Column({
+    type: DataType.ENUM(...Object.values(otpType)),
+  })
+  type: otpType;
   @Column({
     type: DataType.DATE,
     defaultValue: () => new Date(Date.now() + 3 * 60 * 1000),

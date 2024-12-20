@@ -3,7 +3,10 @@ import { AuthService } from './auth.service';
 import { SignUpAuthDto } from './dto/signup-auth.dto';
 import { OtpDto } from 'src/otp/otp.dto';
 import { Itoken } from 'src/common/token.interface';
-import { IforgetPassword } from 'src/common/forget.interface';
+import {
+  IforgetPassword,
+  IRestorationPassword,
+} from 'src/common/forget.interface';
 
 @Controller('auth')
 export class AuthController {
@@ -20,7 +23,7 @@ export class AuthController {
   }
   @Post('active/otp')
   actioveOtp(@Body() otp: OtpDto) {
-    return this.authService.avtiveOtp(otp);
+    return this.authService.activeOtp(otp);
   }
   @Post('refresh/token')
   refreshToken(@Body() token: Itoken) {
@@ -28,6 +31,10 @@ export class AuthController {
   }
   @Post('forget-password')
   forgetPassword(@Body() forgetPassword: IforgetPassword) {
-    return this.authService.forgerPassword(forgetPassword);
+    return this.authService.forgerEmail(forgetPassword);
+  }
+  @Post('restoration/password')
+  restorationPassword(@Body() changePassword: IRestorationPassword) {
+    return this.authService.restorationPassword(changePassword);
   }
 }
