@@ -3,7 +3,6 @@ import { Course } from '../entities/course.entity';
 import { CreateCourseDto } from '../dto/create-course.dto';
 import { UpdateCourseDto } from '../dto/update-course.dto';
 
-
 @Injectable()
 export class courseRepository {
   constructor(

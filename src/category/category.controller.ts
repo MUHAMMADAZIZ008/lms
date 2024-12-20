@@ -9,13 +9,17 @@ import {
   ParseIntPipe,
   Query,
   DefaultValuePipe,
+  UseGuards,
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Roles } from 'src/decorator/role.decorator';
 import { Roles as Role } from 'src/common/enums/role';
+import { AuthGuard } from 'src/guard/auth.guard';
+import { RolesGuard } from 'src/guard/role.guard';
 
+@UseGuards(AuthGuard, RolesGuard)
 @Controller('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}

@@ -9,13 +9,17 @@ import {
   Query,
   DefaultValuePipe,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { CourseService } from './course.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { Roles } from 'src/decorator/role.decorator';
 import { Roles as Role } from 'src/common/enums/role';
+import { AuthGuard } from 'src/guard/auth.guard';
+import { RolesGuard } from 'src/guard/role.guard';
 
+@UseGuards(AuthGuard, RolesGuard)
 @Controller('course')
 export class CourseController {
   constructor(private readonly courseService: CourseService) {}

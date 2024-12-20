@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { SignUpAuthDto } from './dto/signup-auth.dto';
 import { OtpDto } from 'src/otp/otp.dto';
 import { Itoken } from 'src/common/token.interface';
+import { IforgetPassword } from 'src/common/forget.interface';
 
 @Controller('auth')
 export class AuthController {
@@ -24,5 +25,9 @@ export class AuthController {
   @Post('refresh/token')
   refreshToken(@Body() token: Itoken) {
     return this.authService.refreshToken(token);
+  }
+  @Post('forget-password')
+  forgetPassword(@Body() forgetPassword: IforgetPassword) {
+    return this.authService.forgerPassword(forgetPassword);
   }
 }

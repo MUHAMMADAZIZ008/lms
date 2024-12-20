@@ -17,6 +17,7 @@ import { EmailService } from 'src/email/email.service';
 import { UserStatus } from 'src/common/enums/user.status';
 import { OtpDto } from 'src/otp/otp.dto';
 import { Itoken } from 'src/common/token.interface';
+import { IforgetPassword } from 'src/common/forget.interface';
 
 function generateAlphanumericOTP(length: number): string {
   const characters =
@@ -144,5 +145,8 @@ export class AuthService {
     } catch (error) {
       throw new BadRequestException(error.message);
     }
+  }
+  async forgerPassword(forgerPassword: IforgetPassword) {
+    return forgerPassword;
   }
 }

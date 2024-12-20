@@ -9,9 +9,9 @@ import { UserModule } from './user/user.module';
 import { ImageKitConfig } from './configs/imagekit.config';
 import { AuthModule } from './auth/auth.module';
 import { MailerModule } from '@nestjs-modules/mailer';
-import { APP_GUARD } from '@nestjs/core';
-import { AuthGuard } from './guard/auth.guard';
-import { RolesGuard } from './guard/role.guard';
+// import { APP_GUARD } from '@nestjs/core';
+// import { AuthGuard } from './guard/auth.guard';
+// import { RolesGuard } from './guard/role.guard';
 import { GroupModule } from './group/group.module';
 import { CourseModule } from './course/course.module';
 import { CategoryModule } from './category/category.module';
@@ -19,6 +19,7 @@ import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
+    JwtModule.register({}),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -58,15 +59,15 @@ import { JwtModule } from '@nestjs/jwt';
     CourseModule,
     GroupModule,
   ],
-  providers: [
-    {
-      provide: APP_GUARD,
-      useClass: AuthGuard,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: RolesGuard,
-    },
-  ],
+  // providers: [
+  //   {
+  //     provide: APP_GUARD,
+  //     useClass: AuthGuard,
+  //   },
+  //   {
+  //     provide: APP_GUARD,
+  //     useClass: RolesGuard,
+  //   },
+  // ],
 })
 export class AppModule {}

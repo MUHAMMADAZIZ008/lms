@@ -4,6 +4,7 @@ import {
   HttpException,
   HttpStatus,
   Injectable,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
@@ -15,7 +16,7 @@ export class AuthGuard implements CanActivate {
     private readonly reflecotr: Reflector,
   ) {}
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const isPublic = this.reflecotr.get<Boolean>(
+    const isPublic = this.reflecotr.get<boolean>(
       'isPublic',
       context.getHandler(),
     );
@@ -39,7 +40,16 @@ export class AuthGuard implements CanActivate {
   }
 
   private extractTokenFromHeader(request: Request): string | undefined {
-    const [type, token] = request.headers.authorization?.split(' ');
-    return type === 'Bearer' ? token : undefined;
+    const authHeader = request.headers.authorization;
+    if (!authHeader) {
+      throw new UnauthorizedException('Authorization header is missing');
+    }
+
+    const [type, token] = authHeader.split(' ');
+    if (type !== 'Bearer' || !token) {
+      throw new UnauthorizedException('Invalid token format');
+    }
+
+    return token;
   }
 }
