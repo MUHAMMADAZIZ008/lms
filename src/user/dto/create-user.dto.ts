@@ -72,4 +72,11 @@ export class CreateUserDto {
     enum: Roles,
   })
   role: string;
+
+  @ApiProperty({
+    type: String,
+    description: `User's picture`,
+  })
+  @IsOptional()
+  avatar: string;
 }

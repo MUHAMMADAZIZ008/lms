@@ -53,4 +53,7 @@ export class User extends Model {
     defaultValue: Roles.student,
   })
   role: Roles;
+
+  @Column
+  avatar: string;
 }

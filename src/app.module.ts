@@ -16,6 +16,7 @@ import { GroupModule } from './group/group.module';
 import { CourseModule } from './course/course.module';
 import { CategoryModule } from './category/category.module';
 import { JwtModule } from '@nestjs/jwt';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { JwtModule } from '@nestjs/jwt';
     CategoryModule,
     CourseModule,
     GroupModule,
+    ProfileModule,
   ],
   // providers: [
   //   {

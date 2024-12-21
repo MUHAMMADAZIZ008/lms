@@ -59,4 +59,8 @@ export class UserRepository {
       where: { email },
     });
   }
+  async uploadPicture(id: number, file: Express.Multer.File) {
+    const filePeth = `${file.destination}${file.filename}`;
+    return await this.update(id, { avatar: filePeth });
+  }
 }
