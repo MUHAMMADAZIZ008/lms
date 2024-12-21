@@ -23,6 +23,7 @@ import {
   IRestorationPassword,
 } from 'src/common/forget.interface';
 import { otpType } from 'src/common/enums/otp.enum';
+import { IPayload } from 'src/common/user.interface';
 
 function generateAlphanumericOTP(length: number): string {
   const characters =
@@ -76,7 +77,7 @@ export class AuthService {
     if (!isMatch) {
       throw new ForbiddenException('username or password is wrong');
     }
-    const payload = {
+    const payload: IPayload = {
       sub: +currentUser.id,
       username: currentUser.username,
       role: currentUser.role,
