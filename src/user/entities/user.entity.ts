@@ -13,7 +13,7 @@ export class User extends Model {
   })
   public id: number;
 
-  @Column
+  @Column({type: DataType.STRING})
   name: string;
 
   @Column({
