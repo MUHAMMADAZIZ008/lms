@@ -97,11 +97,11 @@ describe('AuthController', () => {
 
   describe('forgetPassword', () => {
     it('forgerEmail test', async () => {
-        const forgetPass = {
-            userId: 1,
-            newPassword: 'samandarshavkatov07@gmail.com',
-            otp:412456 
-        }
+      const forgetPass = {
+        userId: 1,
+        newPassword: 'samandarshavkatov07@gmail.com',
+        otp: 412456,
+      };
       vi.spyOn(authService, 'forgerEmail').mockResolvedValue({
         success: true,
       });
@@ -113,11 +113,11 @@ describe('AuthController', () => {
   });
   describe('restorationPassword', () => {
     it('restorationPassword test', async () => {
-        const forgetPass = {
-            userId: 1,
-            newPassword: 'samandarshavkatov07@gmail.com',
-            otp:412456 
-        }
+      const forgetPass = {
+        userId: 1,
+        newPassword: 'samandarshavkatov07@gmail.com',
+        otp: 412456,
+      };
       vi.spyOn(authService, 'restorationPassword').mockResolvedValue({
         success: true,
       });
