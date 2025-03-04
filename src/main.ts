@@ -16,7 +16,7 @@ async function bootstrap() {
   // app.useGlobalFilters(new HttpExceptionFilter());
   // app.useGlobalFilters(new HttpExceptionFilter());
   const config = new DocumentBuilder()
-    .setTitle('lms')
+    .setTitle('lmss')
     .setDescription('The lms API description')
     .setVersion('1.0')
     .addTag('lms')
